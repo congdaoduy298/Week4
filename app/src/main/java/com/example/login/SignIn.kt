@@ -48,16 +48,12 @@ class SignIn : AppCompatActivity() {
         }
 
         binding.buttonlogin.setOnClickListener {
-            val intent: Intent =
-                Intent(this@SignIn, ListRes::class.java)
-            startActivity(intent)
-        }
-            /*edtuser = binding.username.text.toString()
+            edtuser = binding.username.text.toString()
             edtpass = binding.password.text.toString()
 
             if (edtuser == email && edtpass == password) {
                 val intent: Intent =
-                    Intent(this@SignIn, profile::class.java)
+                    Intent(this@SignIn, ListRes::class.java)
 
                 val bundle = Bundle()
                 bundle.putParcelable(
@@ -70,6 +66,6 @@ class SignIn : AppCompatActivity() {
             else{
                 Toast.makeText(this,"Incorrect E-mail or Password!!!",Toast.LENGTH_LONG).show()
             }
-        }*/
+        }
     }
 }
