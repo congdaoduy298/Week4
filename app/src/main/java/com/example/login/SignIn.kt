@@ -1,30 +1,42 @@
 package com.example.login
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
-import com.example.login.databinding.ActivityMainBinding
-import com.example.login.databinding.ActivitySigninBinding
+import androidx.navigation.fragment.findNavController
 import com.example.login.MainViewModel
+import com.example.login.databinding.FragmentSigninBinding
 
-class SignIn : AppCompatActivity() {
+class SignIn : Fragment() {
 
-    private lateinit var binding: ActivitySigninBinding
+    private lateinit var binding: FragmentSigninBinding
     private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_signin)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+    }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentSigninBinding.inflate(inflater,container,false)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         lateinit var fulname: String
         lateinit var password: String
         lateinit var email: String
@@ -32,19 +44,23 @@ class SignIn : AppCompatActivity() {
         lateinit var edtuser: String
         lateinit var edtpass: String
 
-        val bundle = intent.extras
-        bundle?.let {
-            val user: User? = it.getParcelable(Constants.KEY_USER)
-            user?.let {
-                fulname = user.fullName
-                email = user.email
-                password = user.password
+        setFragmentResultListener("requestKey1") { requestKey1, bundle ->
+            let {
+                val user: User? = bundle.getParcelable(Constants.KEY_USER)
+                user?.let {
+                    fulname = user.fullName
+                    email = user.email
+                    password = user.password
+                }
             }
         }
 
         binding.signup.setOnClickListener{
-            val intent : Intent = Intent(this@SignIn, signup::class.java)
-            startActivity(intent)
+            val controller=findNavController()
+            controller.navigate(R.id.action_signIn_to_signup)
+
+            //val intent : Intent = Intent(this@SignIn, signup::class.java)
+            //startActivity(intent)
         }
 
         binding.buttonlogin.setOnClickListener {
@@ -52,19 +68,16 @@ class SignIn : AppCompatActivity() {
             edtpass = binding.password.text.toString()
 
             if (edtuser == email && edtpass == password) {
-                val intent: Intent =
-                    Intent(this@SignIn, ListRes::class.java)
-
+                val controller=findNavController()
                 val bundle = Bundle()
                 bundle.putParcelable(
                     Constants.KEY_USER, User(fulname, email, password)
                 )
-                intent.putExtras(bundle)
-
-                startActivity(intent)
+                setFragmentResult("requestKey",bundle)
+                controller.navigate(R.id.action_signIn_to_profile)
             }
             else{
-                Toast.makeText(this,"Incorrect E-mail or Password!!!",Toast.LENGTH_LONG).show()
+                Toast.makeText(activity,"Incorrect E-mail or Password!!!",Toast.LENGTH_LONG).show()
             }
         }
     }

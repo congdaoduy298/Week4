@@ -16,7 +16,8 @@
             android:layout_height="813dp"
             android:layout_marginStart="-40dp"
             android:src="@drawable/mask2"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
             android:layout_width="850dp"
@@ -24,7 +25,8 @@
             android:layout_marginStart="-210dp"
             android:src="@drawable/mask1"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="-217dp" />
+            tools:layout_editor_absoluteY="-217dp"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <Button
             android:id="@+id/button_skip"

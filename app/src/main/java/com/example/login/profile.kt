@@ -1,42 +1,59 @@
 package com.example.login
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.app.Activity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
-import com.example.login.databinding.ActivityProfileBinding
-import com.example.login.MainViewModel
+import androidx.navigation.fragment.findNavController
+import com.example.login.databinding.FragmentProfileBinding
 
-class profile : AppCompatActivity() {
+class profile : Fragment() {
 
-    private lateinit var binding: ActivityProfileBinding
+    private lateinit var binding: FragmentProfileBinding
     private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_profile)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+    }
 
-        val bundle = intent.extras
-        bundle?.let {
-            val user: User? = it.getParcelable(Constants.KEY_USER)
-            user?.let {
-                binding.fullname.text = "${user.fullName}"
-                binding.email.text = "${user.email}"
-                binding.phone.text = ""
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentProfileBinding.inflate(inflater, container,false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setFragmentResultListener("requestKey") { requestKey, bundle ->
+            let {
+                val user: User? = bundle.getParcelable(Constants.KEY_USER)
+                user?.let {
+                    binding.fullname.text = "${user.fullName}"
+                    binding.email.text = "${user.email}"
+                    binding.phone.text = ""
+                }
             }
-        }
 
-        dialogFullname()
-        dialogEmail()
-        dialogPhone()
+            dialogFullname()
+            dialogEmail()
+            dialogPhone()
+        }
     }
     private fun dialogFullname(){
         binding.fullname.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
+            val builder = AlertDialog.Builder(requireContext())
             val inflater=layoutInflater
             val dialogLayout=inflater.inflate(R.layout.dialog_fullname,null)
             val fn : EditText = dialogLayout.findViewById(R.id.dialog_name)
@@ -54,7 +71,7 @@ class profile : AppCompatActivity() {
     }
     private fun dialogEmail(){
         binding.email.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
+            val builder = AlertDialog.Builder(requireContext())
             val inflater=layoutInflater
             val dialogLayout=inflater.inflate(R.layout.dialog_email,null)
             val e : EditText = dialogLayout.findViewById(R.id.dialog_mail)
@@ -73,7 +90,7 @@ class profile : AppCompatActivity() {
     }
     private fun dialogPhone(){
         binding.phone.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
+            val builder = AlertDialog.Builder(requireContext())
             val inflater=layoutInflater
             val dialogLayout=inflater.inflate(R.layout.dialog_phone,null)
             val p : EditText = dialogLayout.findViewById(R.id.dialogphone)

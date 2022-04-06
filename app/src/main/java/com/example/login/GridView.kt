@@ -11,8 +11,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.login.databinding.ActivityMainBinding
-import com.example.login.databinding.ActivitySigninBinding
+//import com.example.login.databinding.ActivityMainBinding
+//import com.example.login.databinding.ActivitySigninBinding
 import com.example.login.MainViewModel
 import com.example.login.databinding.GridViewRestaurantBinding
 

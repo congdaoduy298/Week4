@@ -1,7 +1,7 @@
 package com.example.login
 
 import androidx.databinding.DataBindingUtil
-import com.example.login.databinding.ActivityMainBinding
+//import com.example.login.databinding.ActivityMainBinding
 
 class DataStore private constructor(var fullName : String, var email: String, var password: String){
     companion object{
