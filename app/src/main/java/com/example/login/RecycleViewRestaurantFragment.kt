@@ -46,7 +46,7 @@ class RecycleViewRestaurantFragment : Fragment() {
             controller.navigate(R.id.action_recycleViewRestaurantFragment_to_welCome)
         }
 
-        binding.profileButton.setOnClickListener {
+        binding.ivProfile.setOnClickListener {
             val controller = findNavController()
             controller.navigate(R.id.action_recycleViewRestaurantFragment_to_profile)
         }

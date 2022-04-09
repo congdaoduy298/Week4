@@ -7,11 +7,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_recycleview"
-            android:layout_margin="4dp">
+            android:layout_margin="20dp">
                 <androidx.cardview.widget.CardView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    app:cardCornerRadius="12dp">
+                    app:cardCornerRadius="12dp"
+                    android:layout_margin="20dp">
                         <ImageView
                             android:id="@+id/imRes"
                             android:layout_width="match_parent"
@@ -32,7 +33,7 @@
                 <TextView
                     android:id="@+id/addRes"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="60dp"
                     android:layout_margin="8dp"
                     android:layout_marginTop="8dp"
                     />
