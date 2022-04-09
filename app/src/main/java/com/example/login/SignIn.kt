@@ -74,7 +74,7 @@ class SignIn : Fragment() {
                     Constants.KEY_USER, User(fulname, email, password)
                 )
                 setFragmentResult("requestKey",bundle)
-                controller.navigate(R.id.action_signIn_to_profile)
+                controller.navigate(R.id.action_signIn_to_recycleViewRestaurantFragment)
             }
             else{
                 Toast.makeText(activity,"Incorrect E-mail or Password!!!",Toast.LENGTH_LONG).show()

@@ -36,6 +36,15 @@ class profile : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.backButton.setOnClickListener {
+            val controller = findNavController()
+            controller.navigate(R.id.action_profile_to_recycleViewRestaurantFragment)
+        }
+
+        binding.logout.setOnClickListener {
+            val controller = findNavController()
+            controller.navigate(R.id.action_profile_to_welCome)
+        }
         setFragmentResultListener("requestKey") { requestKey, bundle ->
             let {
                 val user: User? = bundle.getParcelable(Constants.KEY_USER)

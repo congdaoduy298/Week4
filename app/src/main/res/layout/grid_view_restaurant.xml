@@ -18,6 +18,13 @@
             android:id="@+id/restaurant_grid"
             android:layout_below="@id/btn_linearView">
         </androidx.recyclerview.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Back" />
     </RelativeLayout>
 
 

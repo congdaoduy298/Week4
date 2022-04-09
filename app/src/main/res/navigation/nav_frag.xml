@@ -58,11 +58,11 @@
         android:label="SignIn"
         tools:layout="@layout/fragment_signin">
         <action
-            android:id="@+id/action_signIn_to_profile"
-            app:destination="@id/profile" />
-        <action
             android:id="@+id/action_signIn_to_signup"
             app:destination="@id/signup" />
+        <action
+            android:id="@+id/action_signIn_to_recycleViewRestaurantFragment"
+            app:destination="@id/recycleViewRestaurantFragment" />
     </fragment>
 
     <fragment
@@ -78,8 +78,42 @@
         android:id="@+id/profile"
         android:name="com.example.login.profile"
         android:label="profile"
-        tools:layout="@layout/fragment_profile"/>
-
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profile_to_welCome"
+            app:destination="@id/welCome" />
+        <action
+            android:id="@+id/action_profile_to_recycleViewRestaurantFragment"
+            app:destination="@id/recycleViewRestaurantFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recycleViewRestaurantFragment"
+        android:name="com.example.login.RecycleViewRestaurantFragment"
+        android:label="RecycleViewRestaurantFragment" >
+        <action
+            android:id="@+id/action_recycleViewRestaurantFragment_to_profile"
+            app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_recycleViewRestaurantFragment_to_gridViewRestaurantFragment"
+            app:destination="@id/gridViewRestaurantFragment" />
+        <action
+            android:id="@+id/action_recycleViewRestaurantFragment_to_welCome"
+            app:destination="@id/welCome" />
+    </fragment>
+    <fragment
+        android:id="@+id/gridViewRestaurantFragment"
+        android:name="com.example.login.GridViewRestaurantFragment"
+        android:label="GridViewRestaurantFragment" >
+        <action
+            android:id="@+id/action_gridViewRestaurantFragment_to_profile"
+            app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_gridViewRestaurantFragment_to_recycleViewRestaurantFragment"
+            app:destination="@id/recycleViewRestaurantFragment" />
+        <action
+            android:id="@+id/action_gridViewRestaurantFragment_to_welCome"
+            app:destination="@id/welCome" />
+    </fragment>
 
 
 </navigation>
